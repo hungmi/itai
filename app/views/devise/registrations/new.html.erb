@@ -1,0 +1,77 @@
+<div class="container middle-position-form">
+
+<%= form_for @customer, url: registration_path(@customer) do |f| %>
+  <!-- Check for errors -->
+  <% if @customer.errors.any? %>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <!-- Show errors -->
+          <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+  <h1>Member | Sign up 
+  <%= link_to 'Log in', new_customer_session_path, class:"btn btn-warning btn-lg pull-right" %></h1>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :company_name %>
+    <%= f.text_field :company_name, :required => true, :autofocus=>true, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :email %>
+    <%= f.text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', class:'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :password, 'Password' %>
+    <%= f.password_field :password, :required => true, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :required => true, class:'form-control' %>
+  </div>
+    
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :country_code, 'Country' %>
+    <%= f.country_select :country_code, {:include_blank => 'Select One'}, :required => true, priority: ["TW", "US"] %>
+  </div>
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :business_field %>
+    <%= f.select :business_field, [['Truck', 'Truck'] ,['Forklift Truck', 'Forklift Truck'],['Mechanical Excavator', 'Mechanical Excavator'],['Others & Customize', 'Others & Customize']], {:include_blank => 'Select One'}, :required => true, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :business_type %>
+    <%= f.select :business_type, [['Factory', 'Factory'] ,['Agent', 'Agent'] ,['Retails', 'Retails']], {:include_blank => 'Select One'}, class:'form-control' %>
+  </div>
+
+  <h3 class="middle-group-title">Contact Person</h3>
+  <div class="form-group">
+    <%= f.label :job_title, 'Job Title' %>
+    <%= f.text_field :job_title, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :telephone, 'Telephone' %>
+    <%= f.text_field :telephone, :required => true, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fax, 'Fax' %>
+    <%= f.text_field :fax, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :humanizer_answer, @customer.humanizer_question %>
+    <%= f.text_field :humanizer_answer, :required => true, class:'form-control' %>
+    <%= f.hidden_field :humanizer_question_id %>
+  </div>
+
+  <br/>
+  <%= f.submit "Sign Up", class:'btn btn-primary' %>
+  <%= link_to 'Cancel', root_path, class:"btn btn-default" %><br />
+
+<% end %>
+
+
+  <%= render "devise/shared/links" %>
+</div>

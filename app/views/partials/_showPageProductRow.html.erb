@@ -1,0 +1,34 @@
+<% @products.each_slice(3) do |product| %>
+  <div class="row product-img-row">
+    <% product.each do |product| %>
+      <div class="col-lg-4 col-md-4 col-xs-4 category-product-img-col">
+        
+          <%= link_to (product_path(product)) do %>
+          <div class="product-img" style="background-image:url('<%=product.image%>');"></div>
+          <% end %>
+          <% comment do %>
+            <%= link_to(image_tag( product.image, :alt => product.title, :title => product.title, :class=>"product-images"), product_path(product.id), :class=>"links") %>
+          <% end %>
+          <div class="product-content">
+            <% comment do %>
+              <span class="label label-primary"><%= product.tags %></span>
+            <% end %>
+            <h3><%= link_to product.title, product_path(product), class:"white-bg-link" %></h3>
+            <% if customer_signed_in? %>
+              <div class="well">
+                <%= render partial:'partials/productInfo', locals: {product: product} %>
+              </div>
+              <% if check_if_lineitem_exist(product.id) %>
+                <%= link_to 'Inquiried', inquirylist_path(current_inquirylist), class:'btn btn-default', id:'inquiried-btn' %>
+              <% else %>
+                <%= link_to 'Inquiry', line_items_path(product_id: product), method: :post,class:'btn btn-warning' %>
+              <% end %>
+            <% end %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<div class="pagination-bar">
+  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+</div>

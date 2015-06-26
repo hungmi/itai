@@ -1,0 +1,81 @@
+<div class="container middle-position-form customer-form row" style="text-align:center;">
+
+  <h1 style="font-weignt:medium;">Send A Message to Us</h1>
+  <hr>
+  <% comment do %>
+  <h5 class="tip-text">Tips: You can also contact us by 
+    <strong><%= link_to 'Skype',"skype:" + @information.company_skype + "?call", class:"skype-link" %></strong></h5>
+  <% end %>
+
+  <%= form_for @contact do |f| %>
+  <div class="col-lg-6">
+    <h3>Basic Information</h3>
+    <div class="form-group">
+      <span class="required-mark">* </span><%= f.label :company_name, as:'Company name' %>
+      <%= f.text_field :company_name, :required => true, :value => customer_signed_in? && !current_customer.company_name.nil? ? current_customer.company_name : '', class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <span class="required-mark">* </span><%= f.label :country, 'Country' %>
+      <%= f.country_select :country, customer_signed_in? && !current_customer.country_code.nil? ? {:selected => current_customer.country_code} : {:include_blank => 'Select One' }, :required => true, priority: ["TW", "US"] %>
+    </div>
+
+    <div class="form-group">
+      <span class="required-mark">* </span><%= f.label :email %>
+      <%= f.text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :value => customer_signed_in? && !current_customer.email.nil? ? current_customer.email : '', class:'form-control'  %>
+    </div>
+
+    <% comment do %>
+    <div class="form-group">
+      <span class="required-mark">* </span><%= f.label :business_field %>
+      <%= f.select :business_field, [['Truck', 'Truck'] ,['Forklift Truck', 'Forklift Truck'],['Mechanical Excavator', 'Mechanical Excavator'],['Others & Customize', 'Others & Customize']], customer_signed_in? && !current_customer.business_field.nil? ? {:selected => current_customer.business_field} : {:include_blank => 'Select One'}, :required => true, class:'form-control' %>
+    </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :business_type %>
+      <%= f.text_field :business_type, class:'form-control' %>
+    </div>
+  </div>
+  <div class="col-lg-6">    
+    <h3>Contact Person</h3>
+    <div class="form-group">
+      <%= f.label :job_title, 'Job Title' %>
+      <%= f.text_field :job_title, :value => customer_signed_in? && !current_customer.job_title.nil? ? current_customer.job_title : '', class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <span class="required-mark">* </span><%= f.label :telephone, 'Telephone' %>
+      <%= f.text_field :telephone, :required => true, :value => customer_signed_in? && !current_customer.telephone.nil? ? current_customer.telephone : '', class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :fax, 'Fax' %>
+      <%= f.text_field :fax, :value => customer_signed_in? && !current_customer.fax.nil? ? current_customer.fax : '', class:'form-control' %>
+    </div>
+
+    <% comment do %>
+    <div class="form-group">
+      <%= f.label :file, 'Inquiried Product' %>
+      <%= f.file_field :file %>
+    </div>
+    <% end %>
+
+    <div class="form-group">
+      <span class="required-mark">* </span><%= f.label :message %>
+      <%= f.text_area :message, :as => :text, :required => true, class:'form-control'  %>
+    </div>
+
+    <div class= "hidden">
+      <%= f.label :nickname %>
+      <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+    </div>
+  </div>
+
+    </br>
+
+    <%= f.submit "Send message", class:"btn btn-primary" %>
+  
+    
+  <% end %>
+</div>

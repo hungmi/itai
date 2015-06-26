@@ -1,0 +1,125 @@
+@import "partials/variables";
+
+div.search-tip {
+	padding-left:25px;
+}
+
+#sidebar-search-form-group {
+	margin: 0px 5px 20px 5px;
+	.sidebar-col {
+		padding: 0px 10px;
+	}
+}
+
+#sidebar-search-form-group .btn {
+	font-size: 18px;
+}
+
+#sidebar-search-form .form-control {
+	width: 100%;
+	height: 43px;
+	font-size: 18px;
+}
+
+.sidebar-topic-underline {
+	margin-bottom:10px !important;
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child {
+
+	border-radius: 0px;
+}
+
+.list-group-item:last-child {
+	margin-bottom: 40px;
+	border-bottom-right-radius: 0px !important;
+	border-bottom-left-radius: 0px !important;
+}
+
+.list-group a.list-group-item {
+ 	font-size: 16px;
+ 	font-weight: 500;
+ 	letter-spacing: 3px;
+ 	max-width: 60%;
+ 	white-space:nowrap;
+	border: none;
+	border-bottom: 1px solid rgb(180,180,180);
+	margin-bottom: 0px;
+	padding: 8px 4px;
+	background-color: white;
+	color: $bg-color;
+	/*transition: padding-left 0.3s ease-in-out;*/
+}
+
+.list-group a.list-group-item:hover {
+	background-color: white;
+	color: $f-color;
+	/*padding-left: 20px;*/
+}
+
+ul.category-ul {
+	padding-left: 0px;
+}
+
+li.first-category {
+	list-style: none;
+	position: relative;
+	font-size: 18px;
+ 	letter-spacing: 3px;
+	padding: 4px;
+	font-weight: 500;
+	margin-bottom: 6px;
+	/*transition: padding-left 0.7s ease-in-out;*/
+}
+
+li.first-category:hover > ul > li.second-category {
+	display: block !important;
+	color: black !important;
+}
+
+li.second-category > a:hover {
+	color: $f-color;
+	text-decoration: none;
+}
+
+li.first-category:hover {
+	/*padding-left: 30px;*/
+}
+
+li.first-category:hover > a {
+	color: $f-color;
+	text-decoration: none;
+}
+
+li.first-category > ul {
+	padding-left: 0px;
+}
+
+li.second-category {
+	display: none;
+	list-style: none;
+	left: 0px;
+	a {
+		font-weight: 400;
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+  // 如果使用者之視窗寬度介於 768px ~ 979px，將會再載入這裡的 CSS。    
+  #sidebar-search-form .form-control {
+  	font-size: 14px;
+		height: 35px;
+	}
+	#sidebar-search-form-group .btn {	font-size: 12px; }
+}
+
+@media screen and (max-width: 767px) {
+  // 如果使用者之裝置寬度 <= 480px，將會再載入這裡的 CSS。 
+  .product-content .well,
+	.sidebar-html {
+		display:none;
+	}
+  
+}

@@ -1,0 +1,20 @@
+<h2 class="page-header">Manage Subcategories Of <%= @category.name %><%= link_to "Create New", new_admin_subcategory_path, class:'btn btn-primary pull-right'%></h2>
+<% if @subcategories.exists? %>
+	<table class="table table-striped">
+	<tr>
+	  <th>Subcategory Title</th>
+	  <th>Product Quantity</th>
+	  <th>Actions</th>
+	</tr>
+	<% @subcategories.each do |subcategory| %>
+	<tr>
+	  <td><%= subcategory.name %></td>
+	  <td><%= link_to subcategory.products.count, admin_subcategory_path(params[:id],subcategory.id), class:'product-quantity' %></td>
+	  <td><%= link_to "Edit", edit_admin_subcategory_path(params[:id],subcategory.id), class:'btn btn-primary' %> <%= link_to "Delete", admin_subcategory_path(params[:id],subcategory.id), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %></td>
+	  
+	</tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>There are no subcategories of this category.</p>
+<% end %>

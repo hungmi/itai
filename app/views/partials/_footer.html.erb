@@ -1,0 +1,51 @@
+
+<% comment do %>
+<div class="footer-top-divider"></div>
+<footer class="footer">
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-xs-2">
+			<ul>
+				<li class="footer-title">Products</li>
+				<% @categories = Category.all %>
+				<% @categories.each do |category| %>
+				<li><%= link_to category.name, category_path(category.id), class:'footer-link' %></li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="col-lg-6 col-md-6 col-xs-6">
+			<ul>
+				<li class="footer-title">Brands</li>
+			<% @brands = Brand.all %>
+				<% @brands.each_slice(5) do |brand| %>
+					<div class="col-lg-3 col-md-3 col-xs-3">
+						<ul style="padding-left:0px;">
+									<% brand.each do |brand| %>
+									<li><%= link_to brand.name, brand_path(brand.id), class:'footer-link' %></li>
+									<% end %>
+						</ul>
+					</div>
+			<% end %>
+			</ul>
+		</div>
+		<div class="col-lg-4 col-md-4 col-xs-4">
+			<ul>
+				<% @information = Information.first %>
+				<% if @information.present? %>
+					<li class="footer-title">Contact with us</li>
+					<li><i class="fa fa-skype" style="font-size:16px; width:17px;"></i> <%= link_to @information.company_skype,"skype:" + @information.company_skype + "?call", class:'footer-link'  %></li>
+					<li><i class="fa fa-phone" style="font-size:16px; width:17px;"></i> <%= @information.telephone %></li>
+					<li><i class="fa fa-fax" style="font-size:16px; width:17px;"></i> <%= @information.fax %></li>
+					<li><i class="fa fa-envelope" style="font-size:16px; width:17px;"></i> <%= @information.mail_address %></li>	
+					<li><i class="fa fa-map-marker" style="font-size:18px; width:17px; text-align:center;"></i> <%= link_to @information.address, "https://www.google.com.tw/maps/place/No.+2,+Lane+59,+Zhangxiu+Rd,+Changhua+City,+Changhua+County,+500/@24.0544144,120.5148345,19z/data=!3m1!4b1!4m5!1m2!2m1!1sNo.+57,+Zhangxiu+Rd,+Changhua+City,+Changhua+County,+500!3m1!1s0x346947923dc6a439:0xca67c7455b382dbf?hl=en", class:'footer-link' %></li>			
+				<% end %>
+			</ul>
+		</div>
+	</div>    	
+</footer>
+<% end %>
+<footer class="copyright_footer">
+	網站為義臺國際貿易有限公司所有權<br>
+  TEL:04-2627-2020(代表號)<br>
+  FAX:04-26271652<br>
+  統一編號84815660
+</footer>

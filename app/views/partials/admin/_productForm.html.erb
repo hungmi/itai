@@ -1,0 +1,77 @@
+<%= simple_form_for [:admin, @product] do |f| %>
+	<!-- Check for errors -->
+	<% if @product.errors.any? %>
+	    <% @product.errors.full_messages.each do |msg| %>
+	    	<!-- Show errors -->
+	      	<div class="alert alert-danger"><%= msg %></div>
+	    <% end %>
+  	<% end %>
+  	
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :category %>
+		<%= f.select :category_id, Category.all.collect {|x| [x.name, x.id]}, {:include_blank => 'Select One'}, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.input :subcategory_id, collection: Category.all, as: :grouped_select, group_method: :subcategories, prompt: "Select One" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :brand %>
+		<%= f.select :brand_id, Brand.all.collect {|x| [x.name, x.id]}, {:include_blank => 'Select One'}, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :image %>
+		<%= f.text_field :image, class:'form-control' %>
+	</div>
+
+	<div class="product-img-preview">
+		<%= image_tag(@product.image) %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :tags %>
+		<%= f.text_field :tags, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :model_name, 'Model' %>
+		<%= f.text_field :model_name, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :item_number, 'Item Number' %>
+		<%= f.text_field :item_number, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :part_number, 'Part Number' %>
+		<p>Please use comma to separate each part number. Ex: 123-123,456-456,789-789</p>
+		<%= f.text_field :part_number, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :diameter, 'Diameter' %>
+		<%= f.text_field :diameter, class:'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :size, 'Size' %>
+		<%= f.text_field :size, class:'form-control' %>
+	</div>
+
+	<div class="form-group product-description-form">
+		<%= f.label :description %><p>Each line less than 22 words suggested.</p>
+		<%= f.text_area :description, class:'form-control', id:'edit' %>
+	</div>
+	<br />
+	<%= f.submit "Submit", class:'btn btn-primary' %>
+	<%= link_to "Cancel", admin_products_path, class:'btn btn-default' %>
+
+<% end %>

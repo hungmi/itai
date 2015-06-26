@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin | H.C.H </title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'admin/application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+    <%= favicon_link_tag'icon.ico' %>
+</head>
+<body>
+    
+	<%= render 'partials/admin/navbar' %>
+    
+
+  <div style="padding-left:40px;padding-right:40px;">
+		<!-- Alerts & Messages -->
+		<% if flash[:notice] %>
+			<div class="alert alert-success"><%= flash[:notice] %></div>
+		<% end %>
+
+		<% if flash[:alert] %>
+			<div class="alert alert-danger"><%= flash[:alert] %></div>
+		<% end %>
+
+		<%= yield %>
+	</div>
+
+	<%= render 'partials/footer' %>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<% comment do %>
+	<% if !product.model_name.blank? %>
+		MODEL: <%= product.model_name %><br/>
+	<% end %>
+<% end %>
+<% if !product.item_number.blank? %>
+	ITEM No.: <%= product.item_number %><br/>
+<% end %>
+<% if !product.part_number.blank? %>
+	PART No.: <%= product.part_number %><br/>
+<% end %>
+<% if !product.diameter.blank? %>
+	DIAMETER(mm): <%= product.diameter %><br/>
+<% end %>
+<% if !product.size.blank? %>
+	SIZE: <%= product.size %><br/>
+<% end %>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>H.C.H | Professional Fan Provider</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+    <%= favicon_link_tag'icon.ico' %>
+</head>
+<body>
+    
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <%= raw @informations.first.JumbotronTitle %>
+            <%= raw @informations.first.JumbotronSubtitle %>
+        </div>
+
+    </div> <!-- /container -->
+
+	<%#= render 'partials/navbar' %>
+    
+    <div class="outside-div">
+
+        <% if flash[:notice] %>
+          <div class="alert alert-success"><%= flash[:notice] %></div>
+        <% end %>
+
+        <% if flash[:alert] %>
+          <div class="alert alert-danger"><%= flash[:alert] %></div>
+        <% end %>
+        
+		<%= yield %>
+        
+	</div>
+
+	<%= render 'partials/footer' %>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
+</body>
+</html>
+
+<style type="text/css">
+
+html {
+    <% @information = Information.first %>
+    background: #fff; url("<%= @information.html_bg %>") no-repeat fixed;
+    background-size: 100% auto;
+}
+
+</style>
+
+<style type="text/css">
+.jumbotron {
+    background:url("<%= @informations.first.JumbotronImg %>");
+    background-size: 100% 100% ;
+    background-image: no-repeat;
+    background-position: center;
+}
+</style>

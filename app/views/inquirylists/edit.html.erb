@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Your Inquiry List</h2>
+<ul>
+	<% @inquirylist.line_items.each do |item| %>
+	<li><%= item.product.title %></li>
+	<%= link_to 'Remove', line_item_path(item), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %>
+	<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_inquirylist_path(@inquirylist) %> |
+<%= link_to 'Back', inquirylists_path %>

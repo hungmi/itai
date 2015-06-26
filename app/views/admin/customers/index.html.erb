@@ -1,0 +1,32 @@
+<h2 class="page-header">Manage Customers <%= link_to 'Add New', new_admin_customer_path, class:'btn btn-primary pull-right' %>
+    <%= form_tag(admin_customers_path, :method => "get",id:"admin-search-form-and-btn" ,class:"search-form pull-right") do %>
+        <div id="admin-search-form" class="form-group" style="display:inline-block;">
+        <%= text_field_tag :search, params[:search], placeholder: "Search Customers", class:'form-control pull-right' %>
+        </div>
+        <%= submit_tag "Search", :name => nil, class:'btn btn-default pull-right' %>
+    <% end %></h2>
+<% if @customers.exists? %>
+  <table class="table table-striped">
+    <tr>
+      <th class='table-title-link'><%= link_to 'Email', :sort => "email" %></th>
+      <th class='table-title-link'><%= link_to 'Country', :sort => "country_code" %></th>
+      <th class='table-title-link'><%= link_to 'Business Type', :sort => "business_type" %></th>
+      <th class='table-title-link'><%= link_to 'Business Field', :sort => "business_field" %></th>
+      <th>Actions</th>
+    </tr>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.email %></td>
+      <td><%= customer.country_code %></td>
+      <td><%= customer.business_type %></td>
+      <td><%= customer.business_field %></td>
+      <td><%= link_to 'Info', admin_customer_path(customer), class:'btn btn-info' %> <%= link_to 'Edit', edit_admin_customer_path(customer), class:'btn btn-primary' %> <%= link_to 'Delete', admin_customer_path(customer), class:'btn btn-danger', method: :delete, data: {confirm:'Are you sure?'} %></td>
+    </tr>
+    <% end %>
+  </table>
+  <div style="text-align:center;">
+    <%= will_paginate @customers, renderer: BootstrapPagination::Rails %>
+  </div>
+<% else %>
+	<p>There are no customers.</p>
+<% end %>

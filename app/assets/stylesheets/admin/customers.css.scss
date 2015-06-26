@@ -1,0 +1,10 @@
+// Place all the styles related to the admin/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'partials/variables';
+
+.table-title-link a {
+	color: #C8C8C8;
+}
+.table-title-link a:hover {text-decoration: none;}

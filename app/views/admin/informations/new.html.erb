@@ -1,0 +1,77 @@
+<script>
+  $(function() {
+    $('textarea#edit').editable({
+      inlineMode: false
+    })
+  });
+</script>
+
+<div class="container middle-position-form">
+	<h1 class="form-page-header"><%= @page_title %></h1>
+	
+	<%= form_for [:admin, @information], url: admin_informations_path(@information), method: :post  do |f| %>
+
+	<h3>Contact Informations</h3>
+
+    <div class="form-group">
+      <%= f.label :company_skype %>
+      <%= f.text_field :company_skype, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :telephone %>
+      <%= f.text_field :telephone, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :fax %>
+      <%= f.text_field :fax, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :mail_address, 'Email' %>
+      <%= f.text_field :mail_address, class:'form-control'  %>
+    </div>
+
+  <h3>About</h3>
+
+    <div class="form-group">
+      <%= f.label :about %>
+      <%= f.text_area :about, id:'edit', class:'form-control'  %>
+    </div>
+
+  <h3>HomePage Top Banner</h3>
+
+    <div class="form-group">
+      <%= f.label :JumbotronTitle, "Title" %>
+      <%= f.text_area :about, id:'edit', class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :JumbotronSubtitle, "Subtitle" %>
+      <%= f.text_area :JumbotronSubtitle, id:'edit', class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :JumbotronImg, "Banner Background Link" %>
+      <%= f.text_field :JumbotronImg, class:'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :html_bg, "Website Background Link" %>
+      <%= f.text_field :html_bg, class:'form-control'  %>
+    </div>
+
+      </br>
+    <div>
+      <%= f.submit "Create", class:"btn btn-primary" %>
+    </div>
+
+  <% end %>
+
+</div>

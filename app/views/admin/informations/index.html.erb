@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 class="form-page-header"><%= @page_title %></h1>
+  <% if @informations.exists? %>
+    <table class="table table-striped">
+      <tr>
+        <th>Company Skype</th>
+        <th>Address</th>
+        <th>Tel</th>
+        <th>Fax</th>
+        <th>Email</th>
+        <th>About</th>
+        <th>Actions</th>
+      </tr>
+      <% @informations.each do |info| %>
+        <tr>
+          <td><%= info.company_skype %></td>
+          <td><%= info.address%></td>
+          <td><%= info.telephone %></td>
+          <td><%= info.fax %></td>
+          <td><%= info.mail_address %></td>
+          <td><%= link_to 'Show about', about_path, class:"btn btn-info" %></td>
+          <td><%= link_to "Edit", edit_admin_information_path(info), class:'btn btn-primary' %> <%= link_to "Delete", admin_information_path(info), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>There are no informations.</p>
+    <%= link_to 'Create New', new_admin_information_path, class:'btn btn-primary btn-lg' %>
+  <% end %>
+</div>

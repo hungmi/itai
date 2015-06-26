@@ -1,0 +1,13 @@
+<h4><%= @customer.email %> in <%= @customer.company_name %></h4>
+<h4><%= @customer.job_title %></h4>
+<h4>Tel: <%= @customer.telephone %></h4>
+<h4>Fax: <%= @customer.fax %></h4>
+</br>
+<div style="background-color:#ffc;margin:10px 10px;">
+<h3>Inquiry Items:</h3>
+<ul>
+<% @line_items.each do |lineitem| %>
+<li><%= link_to lineitem.product.title,product_url(lineitem.product) %> X <%= lineitem.quantity %></li>
+<% end %> 
+</ul>
+</div>

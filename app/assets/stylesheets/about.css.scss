@@ -1,0 +1,23 @@
+@import 'partials/variables';
+
+.container h2 {
+	font-style: italic;
+}
+
+.stuff .well {
+	color: $bg-color;
+	white-space: nowrap;
+	background-color: white;
+	border: none;
+	padding-left: 0px;
+	ul {
+		padding-left: 0px;
+	}
+	li {
+		list-style: none;
+	}
+}
+
+.about-info .well {
+	background-color: white;
+}

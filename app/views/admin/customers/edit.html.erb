@@ -1,0 +1,55 @@
+<div class="container middle-position-form">
+	<h1><%= @page_title %></h1>
+	<%= form_for [:admin, @customer] do |f| %>
+		<!-- Check for errors -->
+		<% if @customer.errors.any? %>
+		    <% @customer.errors.full_messages.each do |msg| %>
+		    	<!-- Show errors -->
+		      	<div class="alert alert-danger"><%= msg %></div>
+		    <% end %>
+	  	<% end %>
+	  <h3>Basic Information</h3>
+		<div class="form-group">
+			<span class="required-mark">* </span><%= f.label :company_name %>
+			<%= f.text_field :company_name, :required => true, class:'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<span class="required-mark">* </span><%= f.label :email %>
+			<%= f.text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', class:'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<span class="required-mark">* </span><%= f.label :country_code, 'Country' %>
+	    <%= f.country_select :country_code, {:include_blank => 'Select One'}, :required => true, priority: ["TW", "US"] %>
+	  </div>
+	  <div class="form-group">
+	  	<span class="required-mark">* </span><%= f.label :business_field %>
+			<%= f.select :business_field, [['Truck', 'Truck'] ,['Forklift Truck', 'Forklift Truck'],['Mechanical Excavator', 'Mechanical Excavator'],['Others & Customize', 'Others & Customize']], {:include_blank => 'Select One'}, :required => true, class:'form-control' %>
+	  </div>
+	  <div class="form-group">
+			<%= f.label :business_type %>
+			<%= f.select :business_type, [['Factory', 'Factory'] ,['Agent', 'Agent'] ,['Retails', 'Retails']], {:include_blank => 'Select One'}, class:'form-control' %>
+		</div>
+	  <h3 class="middle-group-title">Contact Person</h3>
+		<div class="form-group">
+			<%= f.label :job_title, 'Job Title' %>
+			<%= f.text_field :job_title, class:'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<span class="required-mark">* </span><%= f.label :telephone, 'Telephone' %>
+			<%= f.text_field :telephone, :required => true, class:'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :fax, 'Fax' %>
+			<%= f.text_field :fax, class:'form-control' %>
+		</div>
+
+		<br/>
+		<%= f.submit "Submit", class:'btn btn-primary' %>
+		<%= link_to "Cancel", admin_customers_path, class:'btn btn-default' %>
+
+	<% end %>
+</div>

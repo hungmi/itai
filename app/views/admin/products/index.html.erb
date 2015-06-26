@@ -1,0 +1,34 @@
+<h2 class="page-header">Manage Products <%= link_to "Create New", new_admin_product_path, class:'btn btn-primary pull-right'%>
+    <%= form_tag(admin_products_path, :method => "get",id:"admin-search-form-and-btn" ,class:"search-form pull-right") do %>
+        <div id="admin-search-form" class="form-group" style="display:inline-block;">
+        <%= text_field_tag :search, params[:search], placeholder: "Search Products", class:'form-control pull-right' %>
+        </div>
+        <%= submit_tag "Search", :name => nil, class:'btn btn-default pull-right' %>
+    <% end %></h2>
+<% if @products.exists? %>
+	<table class="table table-striped">
+	<tr>
+    <th class='table-title-link'><%= link_to 'Product title', :sort => "title" %></th>
+	  <th>Product Image</th>
+	  <th class='table-title-link'><%= link_to 'Category', :sort => "category_id" %></th>
+	  <th>Product Specifications</th>
+	  <th>Actions</th>
+	</tr>
+	<% @products.each do |product| %>
+	<tr class="admin-productForm">
+	  <td><%= link_to product.title, product_path(product), class:"black-bg-link" %></td>
+	  <td class="product-img-preview"><%= image_tag(product.image) %></td>
+	  <td><%= product.category.name%></td>
+	  <td>
+      <%= render partial:'partials/admin/productInfo', locals: {product: product} %>
+		</td>
+	  <td><%= link_to "Edit", edit_admin_product_path(product), class:'btn btn-primary' %> <%= link_to "Delete", admin_product_path(product), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %></td>
+	</tr>
+	<% end %>
+	</table>
+	<div style="text-align:center;">
+		<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+	</div>
+<% else %>
+	<p>There are no products.</p>
+<% end %>

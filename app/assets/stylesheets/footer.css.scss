@@ -1,0 +1,51 @@
+@import 'partials/variables';
+
+.footer {
+	padding: 10px 50px 5px 50px;
+	background-color: $bg-color;
+}
+
+.footer .col-lg-3 {
+    padding-left: auto;
+    padding-right: auto;
+}
+
+.footer li {
+  list-style:none;
+  padding: 3px 0px;
+}
+
+.footer li a.footer-link:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.footer ul li.footer-title {
+	font-weight: light;
+	color: $f-color;
+	font-size: 18px;
+	border-bottom: 2px solid $f-color;
+	margin-bottom:10px;
+}
+
+.footer-top-divider {
+	margin-top: 50px;
+	margin-bottom: 5px;
+	height: 0px;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid $bg-color;
+}
+
+.copyright_footer {
+	padding-top: 80px;
+	color: $bg-color;
+	text-align: center;
+	margin: 5px auto 0px auto;
+	padding-bottom: 5px;
+}
+
+a.footer-link {
+	color:#C8C8C8;
+}

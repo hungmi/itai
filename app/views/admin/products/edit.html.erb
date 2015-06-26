@@ -1,0 +1,15 @@
+<script>
+  $(function() {
+    $('textarea#edit').editable({
+      inlineMode: false
+    })
+  });
+</script>
+
+<div class="container middle-position-form">
+	<h1><%= @page_title %></h1>
+
+	<div class="admin-productForm">
+		<%= render 'partials/admin/productForm' %>
+	</div>
+</div>

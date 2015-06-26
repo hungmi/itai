@@ -1,0 +1,25 @@
+<h2 class="page-header">Manage Products In : <%= @category.name %> <%= link_to "Create New", new_admin_product_path, class:'btn btn-primary pull-right'%></h2>
+<% if @products.exists? %>
+	<table class="table table-striped">
+	<tr>
+	  <th>Product Title</th>
+	  <th>Product Image</th>
+	  <th>Brand</th>
+	  <th>Category</th>
+	  <th>Product Description</th>
+	  <th>Actions</th>
+	</tr>
+	<% @products.each do |product| %>
+	<tr class="admin-productForm">
+	  <td><%= product.title %></td>
+	  <td class="product-img-preview"><%= image_tag(product.image) %></td>
+	  <td><%= product.brand.name%></td>
+	  <td><%= product.category.name%></td>
+	  <td class="admin-product-description" ><%= simple_format(product.description) %></td>
+	  <td><%= link_to "Edit", edit_admin_product_path(product), class:'btn btn-primary' %> <%= link_to "Delete", admin_product_path(product), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %></td>
+	</tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>There are no products in this category yet.</p>
+<% end %>

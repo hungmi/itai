@@ -1,0 +1,49 @@
+<div class="row">
+  <%= render 'partials/sidebar' %> 
+	<div class="col-lg-9 col-md-9 col-sm-12 category-all-product">
+		<h2 class="category-name-title"><%= @category.name %></h2>
+		<div class="topic-underline"></div>
+
+    <ul class="custom-nav custom-nav-pills">
+      <% comment do %>
+        <% if @brands.exists? %>
+          <li class="<%= 'active' if current_page?(category_path) %>"><%= link_to "All", category_path(@category) %></li><span class="tab-divider"> | </span>
+          <% @brands.each do |brand| %>
+            <% @product_brand = Product.where("category_id = ? AND brand_id = ?", params[:id],brand.id) %>
+            <% if @product_brand.exists? %>
+              <li class="<%= 'active' if params[:brand_id] == brand.id.to_s %>">
+                <%= link_to(categories_in_path(params[:id],brand.id)) do %>
+                <span><%= brand.name %></span><span class="badge"><%= @product_brand.count.to_s %></span>
+                <% end %>
+              </li>
+              <span class="tab-divider"> | </span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>There are no brands in this category.</p>
+        <% end %>
+      <% end %>
+    </ul>
+
+	  <% if @products.exists? %>     
+      <%= form_tag(products_path, :method => "get", id:"sidebar-search-form-group", class:"search-form") do %>
+        <div class="col-lg-8 col-md-8 col-xs-8 sidebar-col">
+          <div class="form-group" id="sidebar-search-form" style="display:inline-block;">
+          <h3>請輸入密碼：</h3>
+          <%= text_field_tag :search, params[:search], class:'form-control' %>
+          </div>
+        </div>
+      <% end %>
+      <%#= render 'partials/showPageProductRow' %>
+	  <% else %>
+	    <p>No products in this category yet.</p>
+	  <% end %>
+
+    <% comment do %>
+    <% if !customer_signed_in? %>
+        <%= link_to 'Log in', new_customer_session_path, class:"btn btn-warning" %> or <%= link_to 'Sign up', new_customer_registration_path, class:"btn btn-info" %><span style="color:black;"> to see product details and take inquiries.</span>
+      <% end %>
+    <% end %>
+	</div>
+
+</div>

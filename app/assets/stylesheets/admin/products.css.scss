@@ -1,0 +1,14 @@
+// Place all the styles related to the admin/products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#admin-search-form-and-btn{
+	margin-right: 40px;
+}
+#admin-search-form {
+	margin-bottom: 0px;
+	margin-right: 5px;
+	.form-control {
+		height:36px;
+	}
+}

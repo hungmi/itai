@@ -1,0 +1,63 @@
+@import 'partials/variables';
+
+#inquiry-quantity-form {
+	width:30%;
+	font-size: 16px;
+	text-align: center;
+	font-family: 'Roboto';
+	font-weight: bold;
+}
+
+.fa-times-circle:hover {
+	color: #FF4500;
+}
+
+#inquiry-submit-btn:hover {
+	background-color: #FF4500;
+}
+
+.fa-times-circle {
+  color: $f-color;
+	font-size: 30px;
+}
+
+#inquiry-submit-btn {
+	background-color: #FFCE00;
+	font-weight: bold;
+	margin-right: 30px;
+	font-size: 20px;
+}
+
+#inquiry-remove-all-btn {
+	font-weight: bold;
+	margin-right: 30px;
+	font-size: 20px;	
+}
+
+#inquiried-btn:hover {
+	background-color:$bg-color;
+}
+
+#inquiry-table {
+	#product-title a{
+		font-weight: bold;
+		color: $bg-color;
+	}
+	th, a {color:white;}
+	td {
+	background-color: white;
+	vertical-align: middle;
+	color: $bg-color;
+		.form-group {
+			width: 20%;
+			display: inline;
+		}
+	}
+}
+
+.quantity-column {
+	width:20%;
+	.btn {
+		margin-left: 10px;
+	}
+}

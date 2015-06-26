@@ -1,0 +1,268 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+// Example using 'Cerulean' bootswatch
+//
+// First import cerulean variables
+@import "bootswatch/slate/variables";
+
+// Then bootstrap itself
+@import 'bootstrap-sprockets';
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+body { padding-top: 0px; }
+
+// And finally bootswatch style itself
+@import "bootswatch/slate/bootswatch";
+
+@import "partials/variables";
+
+
+html {
+	background-color: black;
+}
+
+body {
+	padding-top: 30px;
+	width:$maxw;
+	background-color: $body-bg-color;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1,h2,h3,h4,h5,h6,a,p,label {
+	color: $bg-color;
+	font-family: 'Roboto', sans-serif;
+	text-shadow: none;
+}
+
+.btn, .btn:hover {
+	font-family: 'Roboto', sans-serif;
+	text-shadow: none;
+	border: none;
+	background-image:none;
+	border-radius: 0;
+}
+
+.btn-default {
+	background-color: $bg-color;
+}
+
+.btn-default:hover {
+	background-color: #FFA500;
+}
+
+.btn-warning:hover {
+	background-color: #FF4500;
+}
+
+
+h2.form-page-header {
+	margin-top: 40px;
+}
+
+.breadcrumb a {
+	color: $bg-color;
+	font-weight: bold;
+}
+
+.breadcrumb {
+	background-color: white;
+	background-image: none;
+	border: none;
+	margin-bottom: 5px;
+	li.active {
+		text-shadow:none;
+		color: black;
+	}
+}
+
+.devise-links a{
+	color: $bg-color;
+}
+
+.navbar {
+	background-image :none;
+	background-color: $bg-color;
+	border: none;
+	border-radius: 0px;
+}
+
+.navbar-nav {
+	width: 100%;
+	text-align: center;
+	> li {
+	  float: none;
+	  display: inline-block;
+	}
+}
+
+.navbar-collapse > ul > li > a:hover {
+  color: #fff;
+  box-shadow: inset 0px -5px yellow;
+}
+
+.navbar-collapse > ul > li > a{
+  transition: all .4s ease-out ;
+  /* transition: box-shadow 0.2s; */
+}
+
+.container {
+	//width:$maxw;
+	width:100%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.topic-underline {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	height: 0px;
+	border: 1px solid $f-color;
+}
+
+.alert-warning {
+	background-color: #f89406;
+	border-color: #e96506;
+	color: #fff;
+	border: none;
+	border-radius: 0;
+}
+
+.pagination-bar {	text-align: center; }
+
+#contact_country,
+#customer_country_code {
+	display: block;
+	width: 100%;
+	height: 38px;
+	padding: 8px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #272B30;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.required-mark {
+	color: black;
+}
+
+.middle-position-form .middle-group-title {
+	margin-top: 70px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: $bg-color;
+}
+
+a.white-bg-link {
+	color: $bg-color;
+}
+
+a.white-bg-link:hover {
+	color: black;
+}
+
+a.black-bg-link {
+	color: white;
+}
+
+
+
+@media screen and (min-width: 1681px) {
+
+	.outside-div {
+		padding-left:250px;
+		padding-right:250px;
+	}
+
+	.middle-position-form {
+			padding-left:300px;
+			padding-right:300px;
+	}
+}
+
+@media screen and (min-width: 1368px) and (max-width: 1680px) {
+
+	.outside-div {
+		padding-left:200px;
+		padding-right:200px;
+	}
+	.middle-position-form {
+			padding-left:300px;
+			padding-right:300px;
+	}
+}
+
+@media screen and (min-width: 980px) and (max-width: 1367px) {
+    // For notebook
+    
+	.outside-div {
+		padding-left:80px;
+		padding-right:80px;
+	}
+
+  .well h5 {
+  	font-size:12px;
+  }
+	.middle-position-form {
+			padding-left:200px;
+			padding-right:200px;
+	}
+	.list-group-item {
+		max-width: 80%;
+	}
+	.breadcrumb {
+		padding-top: 0px;
+		padding-bottom: 0px;
+		margin-bottom: 0px;	
+	}	
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+    // 如果使用者之視窗寬度介於 768px ~ 979px，將會再載入這裡的 CSS。    
+  .outside-div {
+		padding-left:50px;
+		padding-right:50px;
+	}
+	.middle-position-form {
+			padding-left:150px;
+			padding-right:150px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+    // 如果使用者之視窗寬度 <= 768px，將會再載入這裡的 CSS。    
+  .outside-div {
+		padding-left:30px;
+		padding-right:30px;
+	}
+    .navbar .navbar-collapse {
+    	text-align: center;
+	}
+	a.list-group-item {
+	 	font-size: 14px;
+	}
+}

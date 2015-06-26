@@ -1,0 +1,61 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'partials/variables';
+
+td a.product-quantity {
+	color:white;
+	font-size:18px;
+}
+
+.subcategory-tab>li {
+	background-color: grey;
+	display: inline;
+	border:1px solid black;
+	padding: 4px;
+}
+
+.subcategory-tab>li>a {
+	background-image: none;
+}
+
+.custom-nav-pills>li>a{
+	padding: 4px 6px;
+	color: $bg-color;
+	text-shadow: none;
+	border-radius: 0px;
+	border: none;
+	background-image: none;
+}
+
+.custom-nav-pills>li.active a,
+.custom-nav-pills>li>a:hover {
+	background-color: rgba(255,255,255,0.5);
+}
+
+.custom-nav-pills>li:hover {
+	background-image: none;	
+}
+
+ul.custom-nav-pills {
+	margin-bottom: 20px;
+}
+
+.custom-nav {
+	padding-left: 0px;
+	span {
+		padding: 3px 4px;
+	}
+	li {
+		list-style: none;
+		display: inline;	
+	}
+	a:hover,a:focus,a:visited {
+		text-decoration: none;
+	}
+}
+
+.tab-divider {
+	color: $bg-color;
+}

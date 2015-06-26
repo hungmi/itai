@@ -1,0 +1,36 @@
+<h2 class="page-header"><i class="fa fa-list-alt" style="vertical-align:middle;"></i> Your Inquiry List</h2>
+	<% if @inquirylist.line_items.exists? %>
+		<table class="table table-striped" id="inquiry-table">
+			<tr>
+			  <th class='table-title-link'><%= link_to 'Product', :sort => "title" %></th>
+			  <th></th>
+			  <th class='table-title-link'><%= link_to 'Brand', :sort => "brand_id" %></th>
+			  <th class='table-title-link'><%= link_to 'Category', :sort => "category_id" %></th>
+			  <th class="quantity-column">Quantity</th>
+			  <th></th>
+			</tr>
+				<% @inquirylist.line_items.each do |item| %>
+					<tr class="admin-productForm inquiry-product-list">
+					  <td id="product-title"><%= link_to item.product.title, product_path(item.product) %></td>
+					  <td class="product-img-preview"><%= image_tag(item.product.image) %></td>
+					  <td><%= item.product.brand.name%></td>
+					  <td><%= item.product.category.name%></td>
+					  <td class="quantity-column">
+					  	<%= form_for item, remote: true do |f| %>
+								<div class="form-group">
+				      		<%= f.number_field :quantity, :value => item.quantity, :required => true, id:'inquiry-quantity-form' %>
+				    		</div>
+				    		<%= f.submit "Update", class:"btn btn-primary" %>
+				  		<% end %>
+					  </td>
+					  <td><%= link_to raw('<i class="fa fa-times-circle"></i>'), line_item_path(item), method: :delete, data: {confirm: 'Are you sure'} %></td>
+					</tr>
+				<% end %>
+		</table>
+		<div style="text-align:center;">
+		<%= link_to raw("Submit <i class='fa fa-check'></i>"),{ :controller => "inquirylists", :action => "send_inquiry_mail", id:@inquirylist.id }, class:'btn btn-warning', id:'inquiry-submit-btn' %>
+		<%= link_to raw("Remove all <i class='fa fa-times'></i>"),{ :controller => "line_items", :action => "destroy_all", id:@inquirylist.id }, method: :delete, class:'btn btn-danger', id:'inquiry-remove-all-btn' %>
+		</div>
+	<% else %>
+		<p>You haven't added any products.</p>	
+	<% end %>

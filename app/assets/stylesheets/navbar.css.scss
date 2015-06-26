@@ -1,0 +1,23 @@
+@import 'partials/variables';
+
+#bs-example-navbar-collapse-1 > ul > li > a {
+	
+	font-weight: bold;
+}
+
+.navbar-default a.navbar-brand {
+	font-weight: bold;
+	color: $brand-color;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-sm-brand {
+		display:none;
+	}  
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-lg-brand {
+		display:none;
+	}  
+}

@@ -1,0 +1,87 @@
+
+        <div class="container">
+            <div class="row">
+                <%= render 'partials/homeTopbar' %>
+            </div>
+        </div>
+
+<div class="container feature-item">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-9 col-sm-12 feature-product">
+            <% comment do %>
+                <h3 class='title-main'><i class="fa fa-thumbs-o-up fa-title"></i>Hot Products</h3>
+                <% if @products.exists? %>
+                    <% rand_product = @products.random %>
+                    <% rand_product.each_slice(4) do |product| %>
+                        <div class="row">
+                            <% product.each do |product| %>
+                                <div class="col-lg-3 col-md-3 col-xs-3 homepage-all-product">
+                                    <%= link_to (product_path(product)) do %>
+                                      <div class="product-img" style="background-image:url('<%=product.image%>');"></div>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <p>There are no products.</p>
+                    </div>
+                <% end %>        
+
+            <h3 class='title-main'><i class="fa fa-star-o fa-title"></i>New Products</h3>
+            <% if @products.exists? %>
+                <% new_product = @products.order('created_at DESC').limit(4) %>
+                <% new_product.each_slice(4) do |product| %>
+                    <div class="row">
+                        <% product.each do |product| %>
+                            <div class="col-lg-3 col-md-3 col-xs-3 homepage-all-product">
+                                <%= link_to (product_path(product)) do %>
+                                  <div class="product-img" style="background-image:url('<%=product.image%>');"></div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% else %>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <p>There are no products.</p>
+                </div>
+            <% end %>
+            <% end %>    
+           
+            <% @categories.each do |category| %>
+                <% if category.name != '超大型聖誕樹' %>
+                <h3 class='title-main'><i class="fa fa-star-o fa-title"></i><%= link_to category.name, category_path(category.id) %></h3>            
+                <div class="row">
+                    <% if @products.exists? %>
+                        <% rand_product = category.products.random %>
+                        <% rand_product.each do |product| %>
+                            <div class="col-lg-3 col-md-3 col-xs-3 homepage-all-product">
+                                <%= link_to (product_path(product)) do %>
+                                  <div class="product-img" style="background-image:url('<%=product.image%>');"></div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <p>There are no products in this category yet.</p>
+                        </div>
+                    <% end %>
+                </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>  <!-- /row -->
+
+</div> <!-- /container -->
+
+<style type="text/css">
+.jumbotron {
+    background:url("<%= @informations.first.JumbotronImg %>");
+    background-size: 100% 100% ;
+    background-image: no-repeat;
+    background-position: center;
+}
+</style>

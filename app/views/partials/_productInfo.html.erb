@@ -1,0 +1,21 @@
+<% comment do %>
+	<% if !product.model_name.blank? %>
+		<h5>MODEL: <%= product.model_name %></h5>
+	<% end %>
+<% end %>
+<% if !product.item_number.blank? %>
+	<h5>ITEM No.: <%= product.item_number %></h5>
+<% end %>
+<% if !product.part_number.blank? %>
+	<h5>PART No.:
+		<% separate_part_num(product.part_number).each do |partnum| %>
+		<span style="font-weight:400;"><%= partnum %></span></br>
+		<% end %>
+	</h5>
+<% end %>
+<% if !product.diameter.blank? %>
+	<h5>DIAMETER(mm): <%= product.diameter %></h5>
+<% end %>
+<% if !product.size.blank? %>
+	<h5>SIZE: <%= product.size %></h5>
+<% end %>

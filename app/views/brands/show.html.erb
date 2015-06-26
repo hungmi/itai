@@ -1,0 +1,36 @@
+<div class="row">
+  <%= render 'partials/sidebar' %> 
+	<div class="col-lg-9 col-md-9 col-xs-9 category-all-product">
+		<h2 class="category-name-title"><%= @brand.name %></h2>
+		<div class="topic-underline"></div>
+
+    <ul class="custom-nav custom-nav-pills">
+        <% if @categories.exists? %>
+          <li class="<%= 'active' if current_page?(brand_path) %>"><%= link_to "All", brand_path(@brand) %></li><span class="tab-divider"> | </span>
+          <% @categories.each do |category| %>
+            <% @product_category = Product.where("brand_id = ? AND category_id = ?", params[:id], category.id) %>
+            <% if @product_category.exists? %>
+              <li class="<%= 'active' if params[:category_id] == category.id.to_s %>">
+                <%= link_to(brands_in_path(params[:id],category.id)) do %>
+                <span><%= category.name %></span><span class="badge"><%= @product_category.count.to_s %></span>
+                <% end %>
+              </li>
+              <span class="tab-divider"> | </span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>There are no categories of this brand.</p>
+        <% end %>
+    </ul>
+
+	  <% if @products.exists? %>
+	  	<%= render 'partials/showPageProductRow' %>
+	  <% else %>
+	    <p>No products for this brand yet.</p>
+	  <% end %>
+
+    <% if !customer_signed_in? %>
+        <%= link_to 'Log in', new_customer_session_path, class:"btn btn-warning" %> or <%= link_to 'Sign up', new_customer_registration_path, class:"btn btn-info" %><span style="color:black;"> to see product details and take inquiries.</span>
+      <% end %>
+	</div>
+</div>

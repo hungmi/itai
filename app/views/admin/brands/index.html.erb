@@ -1,0 +1,19 @@
+<h2 class="page-header"><%= @page_title %> <%= link_to "Create New", new_admin_brand_path, class:'btn btn-primary pull-right'%></h2>
+<% if @brands.exists? %>
+	<table class="table table-striped">
+	<tr>
+	  <th>Brand Title</th>
+	  <th>Product Quantity</th>
+	  <th>Actions</th>
+	</tr>
+	<% @brands.each do |brand| %>
+	<tr>
+	  <td><%= brand.name %></td>
+	  <td><%= link_to brand.products.count, admin_brand_path(brand), class:'product-quantity' %></td>
+	  <td><%= link_to "Edit", edit_admin_brand_path(brand), class:'btn btn-primary' %> <%= link_to "Delete", admin_brand_path(brand), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %></td>
+	</tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>There are no brands.</p>
+<% end %>

@@ -1,0 +1,118 @@
+<div class="container middle-position-form">
+
+  <%= form_for @customer, url: registration_path(@customer) do |f| %>
+  <!-- Check for errors -->
+  <% if @customer.errors.any? %>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <!-- Show errors -->
+          <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+  <h1>Member | Edit account</h1>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :company_name %>
+    <%= f.text_field :company_name, :required => true, :autofocus=>true, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :email %>
+    <%= f.text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', class:'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, :required => false, class:'form-control' %>
+    <span style="color:black;">leave it blank if you don't want to change it.</span>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :required => false, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :current_password %>
+    <%= f.password_field :current_password, :required => true, class:'form-control' %>
+  </div>
+    
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :country_code, 'Country' %>
+    <%= f.country_select :country_code, {:include_blank => 'Select One'}, :required => true, priority: ["TW", "US"] %>
+  </div>
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :business_field %>
+    <%= f.select :business_field, [['Truck', 'Truck'] ,['Forklift Truck', 'Forklift Truck'],['Mechanical Excavator', 'Mechanical Excavator'],['Others & Customize', 'Others & Customize']], {:include_blank => 'Select One'}, :required => true, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :business_type %>
+    <%= f.select :business_type, [['Factory', 'Factory'] ,['Agent', 'Agent'] ,['Retails', 'Retails']], {:include_blank => 'Select One'}, class:'form-control' %>
+  </div>
+
+  <h3>Contact Person</h3>
+  <div class="form-group">
+    <%= f.label :job_title, 'Job Title' %>
+    <%= f.text_field :job_title, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <span class="required-mark">* </span><%= f.label :telephone, 'Telephone' %>
+    <%= f.text_field :telephone, :required => true, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fax, 'Fax' %>
+    <%= f.text_field :fax, class:'form-control' %>
+  </div>
+
+  <br/>
+  <%= f.submit "Submit", class:'btn btn-primary' %>
+  <%= link_to 'Log in', new_customer_session_path, class:"btn btn-warning" %><br />
+
+<% end %>
+
+<% comment do %>
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :company_name, required: true, autofocus: true %>
+      <%= f.input :email, required: true %>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
+          
+      <div class="form-group">
+        <%= f.label :country_code, 'Country' %>
+        <%= f.country_select :country_code, priority: ["TW", "US"] %>
+      </div>
+      <div class="form-group">
+        <%= f.label :business_type %>
+        <%= f.select :business_type, [['Factory', 'Factory'] ,['Agent', 'Agent'] ,['Retails', 'Retails']], {:include_blank => 'Select One'}, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :business_field %>
+        <%= f.select :business_field, [['Truck', 'Truck'] ,['Forklift Truck', 'Forklift Truck'],['Mechanical Excavator', 'Mechanical Excavator'],['Others & Customize', 'Others & Customize']], {:include_blank => 'Select One'}, class:'form-control' %>
+      </div>
+
+      <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+      <%= f.input :password_confirmation, required: false %>
+      <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+  <% end %>
+
+<% end %>
+
+  <h3>Cancel my account</h3>
+
+  <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+  <%= link_to "Back", root_path %>
+</div>

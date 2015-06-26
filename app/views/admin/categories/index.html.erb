@@ -1,0 +1,21 @@
+<h2 class="page-header">Manage Categories <%= link_to "Create New", new_admin_category_path, class:'btn btn-primary pull-right'%></h2>
+<% if @categories.exists? %>
+	<table class="table table-striped">
+	<tr>
+	  <th>Category Title</th>
+	  <th>Product Quantity</th>
+	  <th>Subcategories</th>
+	  <th>Actions</th>
+	</tr>
+	<% @categories.each do |category| %>
+	<tr>
+	  <td><%= category.name %></td>
+	  <td><%= link_to category.products.count, admin_category_path(category), class:'product-quantity' %></td>
+	  <td><%= link_to "Add New", new_admin_subcategory_path(category), class:'btn btn-info' %> <%= link_to "Show All", admin_subcategories_path(category), class:'btn btn-default' %></td>
+	  <td><%= link_to "Edit", edit_admin_category_path(category), class:'btn btn-primary' %> <%= link_to "Delete", admin_category_path(category), class:'btn btn-danger', method: :delete, data: {confirm: 'Are you sure'} %></td>
+	</tr>
+	<% end %>
+	</table>
+<% else %>
+	<p>There are no categories.</p>
+<% end %>

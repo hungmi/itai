@@ -1,0 +1,169 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import "partials/variables";
+
+.jumbotron {
+	height: $jb-height;
+    padding-top: 38px !important;
+	width: $jb-width;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: none !important;
+}
+
+.jumbotron h1 {
+	margin-top:0px;
+	color: $f-color !important;
+	font-weight: bold;
+}
+
+.jumbotron * {
+	//color: white;
+}
+
+.feature-item {
+	color: black;
+}
+
+.feature-item .feature-product img {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.title-main,.title {
+	color: $bg-color;
+	text-shadow: none;
+	font-weight: bold;
+    border-bottom: 1px solid $f-color;
+}
+
+.title-main {
+    margin-bottom: 30px;
+}
+
+.title {
+    margin-bottom: 15px;
+}
+
+.title-main:hover {
+	text-decoration: none;
+	color: black;
+	text-shadow: none;
+}
+
+.fa-thumbs-o-up, .fa-star-o, .fa-search, .fa-bars, .fa-globe {
+    background-color: $f-color;
+    padding: 8px 10px;
+    margin-right: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+.fa-angle-double-right {
+    color: $f-color;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.fa-title {
+    transition: padding 0.3s ease-in-out ;
+}
+
+.fa-title:hover {
+    padding: 15px;
+}
+
+.category-product-img-col div.product-img, .feature-product div.product-img{
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.category-product-img-col div.product-img:hover, .feature-product div.product-img:hover{
+    box-shadow:0 3px 8px rgba(50, 50, 50, 0.8);
+}
+
+.homepage-all-product {
+    .product-img {
+        margin-left: auto;
+        margin-right: auto;
+        background-size:contain;
+        background-repeat:no-repeat;
+        background-position:center;
+        height:150px;
+        width:150px;
+    }
+}
+
+@media screen and (min-width: 1368px) {
+    .homepage-all-product {
+        .product-img {
+            height:240px;
+            width:240px;
+        }
+    }
+}
+
+@media screen and (min-width: 980px) and (max-width: 1367px) {
+    // 如果使用者之視窗寬度 >= 1200px，將會再載入這裡的 CSS。
+    .jumbotron { height: 500px; }
+    .jumbotron h1 {	
+    	margin-top: 15px;
+    	font-size: 48px !important;
+    }
+    .jumbotron h2 {	
+    	font-size: 28px !important;
+    }
+
+    .homepage-all-product {
+        .product-img {
+            height:200px;
+            width:200px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+    // 如果使用者之視窗寬度介於 768px ~ 979px，將會再載入這裡的 CSS。    
+    #sidebar-search-form { font-size: 12px; }
+    .jumbotron { height: 400px; }
+    .jumbotron h1 {	
+    	margin-top: 10px;
+    	font-size: 36px !important;
+    }
+    .jumbotron h2 {	
+    	font-size: 26px !important;
+    }
+
+    h3.title,h3.title-main {
+        font-size: 20px;
+    }
+
+    .alert {
+         h4 {font-size: 16px;}
+         p {font-size: 12px;}        
+    }
+}
+
+@media screen and (max-width: 767px) {
+    // 如果使用者之裝置寬度 <= 480px，將會再載入這裡的 CSS。 
+    .jumbotron { height: 320px; }
+    .jumbotron h1 {	
+    	margin-top: 0px;
+    	font-size: 30px;
+    }
+    .jumbotron h2 {	
+    	font-size: 20px !important;
+    }
+
+    h3.title,h3.title-main {
+        font-size: 20px;
+    }
+
+    .alert {
+         h4 {font-size: 16px;}
+         p {font-size: 12px;}        
+    }
+}

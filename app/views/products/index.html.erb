@@ -1,0 +1,51 @@
+<div class="row">
+	<%= render 'partials/sidebar' %> 
+		<div class="col-lg-9 col-md-9 col-xs-9 category-all-product">
+			<h1 class="category-name-title"><%= @page_title %></h1>
+			<div class="topic-underline"></div>
+			<% if @products.exists? %>
+				<% @products.each_slice(3) do |product| %>
+				<div class="row product-img-row">
+					<% product.each do |product| %>
+					<div class="col-lg-4 col-md-4 col-xs-4 category-product-img-col">
+						<%= link_to (product_path(product)) do %>
+	          <div class="product-img" style="background-image:url('<%=product.image%>');"></div>
+	          <% end %>
+	          <% comment do %>
+						<%= link_to(image_tag( product.image, :alt => "logo", :title => "Home", :class=>"images"), product_path(product), :class=>"links") %>
+						<% end %>
+		        <div class="product-content">
+	            <% comment do %>
+	              <span class="label label-primary"><%= product.tags %></span>
+	            <% end %>
+							<h3><%= product.title %></h3>
+							<% if customer_signed_in? %>
+								<div class="well">
+                	<%= render partial:'partials/productInfo', locals: {product: product} %>
+								</div>
+								<% if check_if_lineitem_exist(product.id) %>
+									<%= link_to 'Inquiried', inquirylist_path(current_inquirylist), class:'btn btn-default', id:'inquiried-btn' %>
+								<% else %>
+									<%= link_to 'Inquiry', line_items_path(product_id: @product), method: :post,class:'btn btn-warning' %>
+								<% end %>
+							<% end %>
+
+
+
+			  		</div>
+		  		</div>
+		  		<% end %>
+				</div>
+				<% end %>
+				<div class="pagination-bar">
+					<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+				</div>
+			<% else %>
+			  <p>There are no products.</p>
+			<% end %>
+			<% if !customer_signed_in? %>
+      	<%= link_to 'Log in', new_customer_session_path, class:"btn btn-warning" %> or <%= link_to 'Sign up', new_customer_registration_path, class:"btn btn-info" %><span style="color:black;"> to see product details and take inquiries.</span>
+    	<% end %>
+		</div>
+
+</div>

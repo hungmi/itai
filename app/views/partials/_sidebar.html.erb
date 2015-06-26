@@ -1,0 +1,73 @@
+<div class="col-lg-3 col-md-3 sidebar-html">
+  <h3 class="title"><i class="fa fa-search fa-title"></i>產品搜尋</h3>
+  <div class="row">
+    <%= form_tag(products_path, :method => "get", id:"sidebar-search-form-group", class:"search-form") do %>
+      <div class="col-lg-8 col-md-8 col-xs-8 sidebar-col">
+        <div class="form-group" id="sidebar-search-form" style="display:inline-block;">
+        <%= text_field_tag :search, params[:search], placeholder: "請輸入關鍵字", class:'form-control' %>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-4 sidebar-col">
+        <%= submit_tag "搜尋", :name => nil, class:'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="alert alert-dismissible alert-warning" style="display:none;">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <h4>Search examples:</h4>
+      <p>1. Search by product title: "a6560"</p>
+      <p>2. Search by fan diameter: "660"</p>
+      <p>3. Search by part no.: "1-3345-678-9"</p>
+      <p>4. Search by fan type: "front"</p>
+  </div>
+
+  <h3 class="title"><i class="fa fa-bars fa-title"></i>產品目錄</h3>
+  <ul class="category-ul">
+    <% @categories.each do |category| %>
+      <li class="first-category"><%= link_to category.name, category_path(category) %>
+        <span class="<%= 'caret' if category.subcategories.exists? %>" style="color:black;"></span>
+        <ul>
+        <% category.subcategories.each do |subcategory| %>
+          <li class="second-category"><%= link_to subcategory.name.titleize, subcategory_path(category.id,subcategory.id) %></li>
+        <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+
+
+  <% comment do %>
+  <div class="list-group">
+      <% if @categories.exists? %>
+        <% @categories.each do |category| %>
+          <%= link_to category.name.upcase, category_path(category), class:'list-group-item first-category' %>
+            <div class="list-group-item">
+              <% category.subcategories.each do |subcategory| %>
+                <%= link_to subcategory.name.titleize, subcategory_path(category.id,subcategory.id), class:'list-group-item second-category' %>
+              <% end %>
+            </div>
+        <% end %>
+      <% else %>
+        <p>There are no categories.</p>
+      <% end %>
+  </div>
+  <% end %>
+
+
+  <h3 class="title"><i class="fa fa-globe fa-title"></i>Brand</h3>
+  <div class="list-group">
+      <% if @brands.exists? %>
+        <% @brands.each do |brand| %>
+          <%= link_to brand.name, brand_path(brand), class:'list-group-item' %>
+        <% end %>
+      <% else %>
+        <p>There are no brands.</p>
+      <% end %>
+  </div>
+
+
+  <% if params[:controller] == 'pages' && params[:action] == 'about' %>
+    <%= render 'partials/companyMembers' %>
+  <% end %>
+
+</div>

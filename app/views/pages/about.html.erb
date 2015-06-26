@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-lg-9 col-md-9 col-sm-12">
+		<h1 style="font-weight:medium;">About H.C.H Machinery Works</h1>
+		<div class="topic-underline"></div>
+			<div class="container about-info">
+				<% if @informations.exists? %>
+					<%= raw @informations.first.about %>
+				<% end %>
+			</div>
+    </div>
+    <%= render 'partials/sidebar' %>
+</div>
